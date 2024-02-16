@@ -86,7 +86,7 @@ async function displayAlbums() {
         if (e.href.includes("/songs") && !e.href.includes(".htaccess")) {
             let folder = e.href.split("/").slice(-2)[0]
             // Get the metadata of the folder
-            let a = await fetch(`/songs/${folder}/info.json`)
+            let a = await fetch(`https://github.com/AkshayBhadule/Spotify-Clone/tree/main/songs/${folder}/info.json`)
             let response = await a.json(); 
             cardContainer.innerHTML = cardContainer.innerHTML + ` <div data-folder="${folder}" class="card">
             <div class="play">
@@ -108,7 +108,7 @@ async function displayAlbums() {
     Array.from(document.getElementsByClassName("card")).forEach(e => { 
         e.addEventListener("click", async item => {
             console.log("Fetching Songs")
-            songs = await getSongs(`songs/${item.currentTarget.dataset.folder}`)  
+            songs = await getSongs(`https://github.com/AkshayBhadule/Spotify-Clone/tree/main/songs/${item.currentTarget.dataset.folder}`)  
             playMusic(songs[0])
 
         })
@@ -117,7 +117,7 @@ async function displayAlbums() {
 
 async function main() {
     // Get the list of all the songs
-    await getSongs("songs/ncs")
+    await getSongs("https://github.com/AkshayBhadule/Spotify-Clone/tree/main/songs/ncs")
     playMusic(songs[0], true)
 
     // Display all the albums on the page
