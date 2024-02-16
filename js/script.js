@@ -84,7 +84,7 @@ async function displayAlbums() {
     for (let index = 0; index < array.length; index++) {
         const e = array[index];
         if (e.href.includes("/songs/")) {
-            let folder = e.href.split("/").slice(-1)[0]; // get the second last item to get the folder name
+            let folder = e.href.split("/").slice(-2)[0]; // get the second last item to get the folder name
             // Get the metadata of folder
             let a = await fetch(`/songs/${folder}/info.json`);
             let response = await a.json();
@@ -190,7 +190,7 @@ document.querySelector(".seekbar").addEventListener("click", e => {
     previous.addEventListener("click", () => {
         currentSong.pause()
         console.log("Previous clicked")
-        let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
+        let index = songs.indexOf(currentSong.src.split("/").slice(-2)[0])
         if ((index - 1) >= 0) {
             playMusic(songs[index - 1])
         }
@@ -201,7 +201,7 @@ document.querySelector(".seekbar").addEventListener("click", e => {
         currentSong.pause()
         console.log("Next clicked")
 
-        let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0])
+        let index = songs.indexOf(currentSong.src.split("/").slice(-2)[0])
         if ((index + 1) < songs.length) {
             playMusic(songs[index + 1])
         }
